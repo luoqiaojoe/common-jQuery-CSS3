@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>巧妙的制作背景色渐变动画</title>
+	
+	<style>
+
+	/*线性渐变（径向渐变）是不支持animation的，单色的background是支持的*/
+
+	div{
+		position: relative;
+		width: 300px;
+		height: 100px;
+		margin: 20px auto;
+		background: linear-gradient(90deg,#ffc700 0%,#e91e1e 50%,#6f27b0 100%);
+		background-size: 200% 100%;
+		background-position: 0 0;
+		animation: bgposition 2s infinite linear alternate;
+	}
+
+	@keyframes bgposition {
+		0% {
+			background-position: 0 0;
+		}
+
+		100% {
+			background-position: 100% 0;
+		}
+	}
+
+	</style>
+
+</head>
+<body>
+	<div></div>
+</body>
+</html>

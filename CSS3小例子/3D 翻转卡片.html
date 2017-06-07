@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D 翻转卡片</title>
+	<style>
+		.flip {
+			transform: translate3d(0,0,0);
+			margin: 40px;
+		}
+		.flip-box {
+			position: relative;
+			width: 110px;
+			height: 140px;
+			overflow: hidden;
+		}
+		.flip-item {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transition: all .5s ease-in-out;
+			transform-style: preserve-3d;
+			backface-visibility: hidden;
+			border: 1px solid #ddd;
+			box-sizing:border-box;
+		}
+		.flip-item img {
+			width: 70px;
+			height: 70px;
+			border-radius: 100%;
+			margin-right: 32px auto;
+			display: block;
+		}
+
+		.flip-item-front {
+			transform: rotateY(0deg);
+			z-index: 2;
+			background-color: #fff;
+		}
+		.flip-item-back {
+			transform: rotateY(180deg);
+			z-index: 1;
+			/*background-color: #009fff;*/
+		}
+
+		.flip-box:hover .flip-item-front {
+			z-index: 1;
+			transform: rotateY(180deg);
+		} 
+
+		.flip-box:hover .flip-item-back {
+			z-index: 2;
+			transform: rotateY(0deg);
+		} 
+	</style>
+</head>
+<body>
+	<div class="flip">
+		<div class="flip-box">
+			<a href="" class="flip-item flip-item-front"><img src="img/movie_3_9.jpg" alt=""></a>
+
+			<a href="" class="flip-item flip-item-back"><img src="img/movie_3_12.jpg" alt=""></a>
+		</div>
+	</div>
+</body>
+</html>

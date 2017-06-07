@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery 轮播图</title>
+	<style>
+	
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	#box {
+		width: 580px;
+		height: 326px;
+		margin: 100px auto;
+		overflow: hidden;
+		position: relative;
+	}
+
+	#content {
+		height: 326px;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	
+	#content li {
+		list-style: none;
+		width: 580px;
+		float: left;
+	}
+
+	#box span {
+		display: none;
+		position: absolute;
+		width: 60px;
+		height: 60px;
+		font-size: 40px;
+		text-align: center;
+		background-color: rgba(255,255,255,.5);
+		color: #fff;
+		z-index: 2;
+		top: 50%;
+		transform: translateY(-50%);
+		cursor: pointer;
+	}
+
+	#box span:hover {
+		color: #000;
+		background-color: rgba(255,255,255,.8);
+	}
+
+	#prev {
+		left: 0;
+	}
+
+	#next {
+		right: 0;
+	}
+
+	#round_num {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 10px;
+		bottom: 16px;
+	}
+
+	#round_num li {
+		list-style-type: none;
+		float: left;
+		width: 6px;
+		height: 6px;
+		margin: 5px;
+		border: 1px solid #fff;
+		border-radius: 50%;
+	}
+
+	#round_num li.on {
+		background-color: #fff;
+	}
+
+	</style>
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+
+	<script>
+
+	$(function(){
+
+		var firstLi = $('#content li').first().clone();
+
+		var liWidth = $('#content li').eq(0).outerWidth();
+
+		$('#content').append(firstLi).css('width',liWidth*$('#content li').length);
+
+		var i = 0;
+		var timer;
+
+		autoPlay();
+		
+		//点击向前按钮
+
+		$('#prev').click(function(){
+
+			i--;
+			moveImg();
+
+		});
+
+		//点击向后按钮
+		$('#next').click(function(){
+
+			i++;
+			moveImg();
+
+		})
+
+		//自动轮播
+		function autoPlay(){
+
+			timer = setInterval(function(){
+
+				i++;
+				moveImg();
+
+			},5000)
+
+		}
+
+		//让图片动起来
+		function moveImg() {
+
+			//最后一张图片时
+			if(i==$('#content li').length) {
+				i=1;
+				$('#content').css({left:0});
+			}
+
+			//第一张图片时
+			if(i==-1){
+
+				i=$('#content li').length-2;
+				$('#content').css({left:($('#content li').length-1)*-liWidth});
+
+			}
+
+			//开始动！
+			$('#content').stop().animate({left:-i*liWidth},400);
+
+			//小圆点的状态
+			if(i==$('#content li').length-1){
+				$('#round_num li').eq(0).addClass('on').siblings().removeClass('on');
+			} else {
+				$('#round_num li').eq(i).addClass('on').siblings().removeClass('on');
+			}
+
+		}
+
+		// 鼠标移入移出事件
+		$('#box').hover(function(){
+			$('#prev').show();
+			$('#next').show();
+			clearInterval(timer);
+
+		},function(){
+			$('#prev').hide();
+			$('#next').hide();
+			autoPlay();
+
+		})
+
+		// 点击小圆点时
+		$('#round_num li').click(function(){
+
+			i = $(this).index();
+			moveImg();
+
+		})
+
+	})
+
+	</script>
+</head>
+<body>
+	<div id="box">
+		<span id="prev">&lt;</span>
+		<span id="next">&gt;</span>
+		<ul id="content">
+			<li><img src="img/12.jpg" alt=""></li>
+			<li><img src="img/13.jpg" alt=""></li>
+			<li><img src="img/14.jpg" alt=""></li>
+			<li><img src="img/15.jpg" alt=""></li>
+			<li><img src="img/16.jpg" alt=""></li>
+			<li><img src="img/17.jpg" alt=""></li>
+		</ul>
+		<ol id="round_num">
+			<li class="on"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+	</div>
+</body>
+</html>

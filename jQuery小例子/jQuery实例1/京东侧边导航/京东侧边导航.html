@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>京东侧边导航</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	
+	#aside-nav {
+		position: fixed;
+		display: none;
+		left: 50px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	#aside-nav li{
+		list-style: none;
+		width: 30px;
+		height: 30px;
+		font-size: 14px;
+		line-height: 26px;
+		text-align: center;
+		border-bottom: 1px dashed #ccc;
+	}
+
+	#aside-nav li a {
+		display: block;
+		text-decoration: none;
+		color: #000;
+	}
+	
+	#aside-nav li a.title {
+		display: none;
+	}
+
+	#aside-nav li.on a {
+		display: none;
+	}
+
+	#aside-nav li.on .title {
+		display: block;
+		color: #c81623;
+	}
+
+	#aside-nav .hover a {
+		display: none;
+	}
+
+	#aside-nav .hover .title {
+		display: block;
+		background-color: #c81623;
+		color: #fff;
+	}
+
+	div {
+		width:100%;
+		height:100%;
+		width:1000px;
+		margin:0 auto
+	}
+
+	#banner {
+		height: 700px;
+	}
+	</style>
+	<script src="jquery-1.7.2.min.js"></script>
+	<script>
+
+	$(function(){
+
+		var arr=['red','green','blue','orange','pink','gold','purple','#f60','yellow','blue','red'];
+
+		$('div:gt(0)').each(function(index){
+			$(this).css('background',arr[index])
+		})
+
+		$('#aside-nav li').each(function(){
+
+			$(this).hover(function(){
+				$(this).toggleClass('hover');
+			})
+
+			$(this).click(function(){
+
+				$(this).toggleClass('on').siblings().removeClass('on');
+
+				$('html,body').stop().animate({
+
+					scrollTop:$('div:gt(0)').eq($(this).index()).offset().top
+
+				},500)
+
+			})
+
+		})
+
+		var divTop = [];
+
+		$('div:gt(0)').each(function(){
+
+			divTop.push($(this).offset().top)
+
+		});
+
+		// console.log(divTop);
+
+		$(window).scroll(function(){
+
+			var wTop = $(window).scrollTop();
+
+			if(wTop>$('div:eq(0)').height()/2){
+				$('#aside-nav').show();
+			}else{
+				$('#aside-nav').hide();
+			}
+
+			var which=0;
+
+			for(var i=0;i<$('#aside-nav li').length;i++){
+
+				if($(window).scrollTop()+$('div:eq(1)').height()/2>=divTop[i]){
+					which = i;
+				}
+			}
+
+			$('#aside-nav li').eq(which).addClass('on').siblings().removeClass('on');
+
+		})
+
+
+	})
+
+	</script>
+</head>
+<body>
+	
+	<ol id="aside-nav">
+		<li class="on"><a href="javascript:void(0)">1F</a><a href="javascript:void(0)" class="title">服饰</a></li>
+		<li><a href="javascript:void(0)">2F</a><a href="javascript:void(0)" class="title">美妆</a></li>
+		<li><a href="javascript:void(0)">3F</a><a href="javascript:void(0)" class="title">手机</a></li>
+		<li><a href="javascript:void(0)">4F</a><a href="javascript:void(0)" class="title">家电</a></li>
+		<li><a href="javascript:void(0)">5F</a><a href="javascript:void(0)" class="title">数码</a></li>
+		<li><a href="javascript:void(0)">6F</a><a href="javascript:void(0)" class="title">运动</a></li>
+		<li><a href="javascript:void(0)">7F</a><a href="javascript:void(0)" class="title">居家</a></li>
+		<li><a href="javascript:void(0)">8F</a><a href="javascript:void(0)" class="title">母婴</a></li>
+		<li><a href="javascript:void(0)">9F</a><a href="javascript:void(0)" class="title">食品</a></li>
+		<li><a href="javascript:void(0)">10F</a><a href="javascript:void(0)" class="title">图书</a></li>
+		<li><a href="javascript:void(0)">11F</a><a href="javascript:void(0)" class="title">服务</a></li>
+	</ol>
+
+	<div id="banner">
+		summary
+		<h1>向下滑动，左侧会显示导航栏</h1>
+	</div>
+
+	<div>服饰</div>
+	<div>美妆</div>
+	<div>手机</div>
+	<div>家电</div>
+	<div>数码</div>
+	<div>运动</div>
+	<div>居家</div>
+	<div>母婴</div>
+	<div>食品</div>
+	<div>图书</div>
+	<div>服务</div>
+</body>
+</html>

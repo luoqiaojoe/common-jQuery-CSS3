@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图缓冲</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		div{
+			position: relative;
+			width: 688px;
+			height: 318px;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+
+		ul {
+			position: absolute;
+			height: 318px;
+		}
+
+		ul li {
+			list-style: none;
+			float: left;
+		}
+
+		span {
+			position: absolute;
+			z-index: 1;
+			width: 70px;
+			line-height: 60px;
+			text-align: center;
+			font-size: 20px;
+			color: #fff;
+			background-color: #000;
+			filter:alpha(opacity:0);
+			opacity: 0;
+			cursor: pointer;
+		}
+
+		#prev{
+			left: 0;
+			top: 50%;
+			transform:translate(0,-50%);
+		}
+
+		#next{
+			right: 0;
+			top: 50%;
+			transform:translate(0,-50%);
+		}
+
+	</style>
+	<script>
+
+		function getStyle(obj,attr){
+
+			return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+
+		}
+
+
+		function domove(obj,json,fn) {
+
+			clearInterval(obj.timer);
+
+			obj.timer = setInterval(function(){
+
+				var bStop = true;
+
+				for( attr in json){
+
+					var iCur = 0;
+
+					if(attr == 'opacity'){
+
+						iCur = parseInt(parseFloat(getStyle(obj,attr))*100)
+
+					} else{
+						iCur = parseInt(getStyle(obj,attr));
+					}
+
+					iSpeed = (json[attr] - iCur)/8;
+
+					iSpeed = iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+
+
+					if(iCur!=json[attr]){
+						bStop = false;
+					}
+
+					if(attr=='opacity'){
+
+						obj.style.filter = 'alpha(opacity:'+(iCur+iSpeed)+')';
+						obj.style.opacity = (iCur+iSpeed)/100;
+
+					} else{
+						obj.style[attr] = iCur + iSpeed +'px';
+					}
+				}
+
+				if(bStop){
+					clearInterval(obj.timer);
+					if(fn){
+						fn();
+					}
+				}
+
+			},30)
+		 
+		}
+
+		window.onload = function() {
+
+			var aDiv = document.getElementById('box');
+			var aUl = document.getElementById('content');
+			var oLi = aUl.getElementsByTagName('li');
+			var oSpan = document.getElementsByTagName('span');
+
+			var num = 1;
+
+			// aUl.innerHTML = aUl.innerHTML + aUl.innerHTML;
+
+			aUl.style.width = oLi[0].offsetWidth*oLi.length + 'px';			
+			oSpan[0].innerHTML = '<' + num+'/'+oLi.length/2;
+			oSpan[1].innerHTML = num+'/'+oLi.length/2 + '>';
+			
+			timer=setInterval(move,4000);
+
+			aDiv.onmouseover = function() {
+
+				clearInterval(timer);
+				domove(oSpan[0],{opacity:50});
+				domove(oSpan[1],{opacity:50});
+
+			}
+
+			aDiv.onmouseout = function() {
+
+				clearInterval(timer);
+				timer=setInterval(move,4000);
+				domove(oSpan[0],{opacity:0});
+				domove(oSpan[1],{opacity:0});
+
+			}
+
+			function move() {
+
+				num++;
+
+				if(num>oLi.length/2) {
+					num = 1;
+				}
+
+				domove(aUl,{left:-688*(num-1)});
+
+				oSpan[0].innerHTML = '<' + num+'/'+oLi.length/2;
+				oSpan[1].innerHTML = num+'/'+oLi.length/2 + '>';
+				
+			}
+
+			oSpan[0].onclick = function() {
+
+				num--;
+
+				if(num<1) {
+					num = oLi.length/2;
+				}
+
+				domove(aUl,{left:-688*(num-1)});
+
+				oSpan[0].innerHTML = '<' + num+'/'+oLi.length/2;
+				oSpan[1].innerHTML = num+'/'+oLi.length/2 + '>';
+
+			}
+
+			oSpan[1].onclick = function() {
+
+				move();
+
+			}
+
+
+		}
+
+	</script>
+</head>
+<body>
+	<div class="box" id="box">
+
+		<span id="prev"></span>
+		<span id="next"></span>
+		<ul id="content">
+			<li><img src="img/banner/1.1.jpg" alt=""></li>
+			<li><img src="img/banner/1.2.jpg" alt=""></li>
+			<li><img src="img/banner/2.1.jpg" alt=""></li>
+			<li><img src="img/banner/2.2.jpg" alt=""></li>
+			<li><img src="img/banner/3.1.jpg" alt=""></li>
+			<li><img src="img/banner/3.2.jpg" alt=""></li>
+			<li><img src="img/banner/4.1.jpg" alt=""></li>
+			<li><img src="img/banner/4.2.jpg" alt=""></li>
+			<li><img src="img/banner/5.1.jpg" alt=""></li>
+			<li><img src="img/banner/5.2.jpg" alt=""></li>
+		</ul>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS实现一个六边形</title>
+	<style>
+		.container {
+		  width: 100px;
+		  margin: 20px auto 0;
+		}
+		.container div {
+		  width: 100px;
+		  height: 200px;
+		  overflow: hidden;
+		}
+
+		.cont {
+		  transform: rotate(60deg);
+		}
+		.inner {
+		  transform: rotate(-120deg);
+		  background: red;
+		  cursor: pointer;
+		}
+		.inner img {
+		  transform: rotate(60deg);
+		}
+		.inner:hover {
+		  background: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div>
+			<div class="cont">
+				<div class="inner">
+					<img src="luffy.png" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

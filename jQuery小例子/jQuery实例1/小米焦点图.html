@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小米焦点图</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	#slide {
+		width: 992px;
+		height: 420px;
+		margin: 50px auto;
+		position: relative;
+		cursor: pointer;
+	}
+
+	#slide li {
+		float: left;
+		list-style-type: none;
+	}
+
+	#slide ul {
+		width: 992px;
+		height: 420px;
+		position: relative;
+	}
+
+	#slide ul li {
+		position: absolute;
+		display: none;
+	}
+
+	#slide ul li.on {
+		display: block;
+	}
+
+	#slide ol {
+		position: absolute;
+		right: 20px;
+		bottom: 20px;
+	}
+
+	#slide ol li {
+		width: 20px;
+		height: 12px;
+		padding: 5px;
+		line-height: 12px;
+		text-align: center;
+		border: 1px solid #ccc;
+		margin-left: 10px;
+	}
+
+	#slide ol li.on {
+		background-color: #f60;
+	}
+
+	#slide span {
+		position: absolute;
+		width: 40px;
+		height: 80px;
+		top: 50%;
+		transform:translateY(-50%);
+		display: none;
+		background: url(img/73/arr.png) no-repeat;
+	}
+
+	#slide #prev {
+		left: 0;
+	}
+
+	#slide #next {
+		right: 0;
+		background-position: -42px 0;
+	}
+
+	</style>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+	$(function(){
+
+		var timer;
+		var idx = 0;
+		var ulLi_lgth = $('#slide ul li').length
+
+		autoPlay();
+
+		// 点击向前按钮
+		$('#slide #prev').bind('click',function(){
+
+			idx--;
+			fadeInOut();
+		});
+
+		// 点击向后按钮
+		$('#slide #next').bind('click',function(){
+			idx++;
+			fadeInOut();
+		});
+
+		$('#slide').hover(function(){
+
+			$('#slide span').stop(true).fadeIn();
+
+			clearInterval(timer);
+
+		},function(){
+
+			$('#slide span').stop(true).fadeOut();
+			clearInterval(timer);
+			autoPlay();
+
+		})
+
+		// 自动播放
+		function autoPlay(){
+			timer = setInterval(function(){
+				idx++;
+				fadeInOut();
+			},4000);
+		}
+
+		// 让图片淡入淡出
+		function fadeInOut(){
+
+			if(idx==-1){
+				idx = ulLi_lgth-1;
+			}
+
+			if(idx==ulLi_lgth){
+				idx=0;
+			}
+			$('#slide ul li').eq(idx).stop().fadeTo(800,1).siblings().stop().fadeTo(800,0);
+			$('#slide ol li').eq(idx).addClass('on').siblings().removeClass('on');
+		}
+
+		$('#slide ol li').bind('mouseover',function(){
+
+			idx = $(this).index();
+			fadeInOut();
+		})
+
+	})
+
+	</script>
+</head>
+<body>
+	<div id="slide">
+		<ul id="pics">
+			<li class="on"><img src="img/73/1.jpg" alt=""></li>
+			<li><img src="img/73/2.jpg" alt=""></li>
+			<li><img src="img/73/3.jpg" alt=""></li>
+			<li><img src="img/73/4.jpg" alt=""></li>
+			<li><img src="img/73/5.jpg" alt=""></li>
+		</ul>
+		<ol id="pic_num">
+			<li class="on">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ol>
+		<span id="prev"></span>
+		<span id="next"></span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转木马轮播图</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		
+		.stage {
+			perspective: 1000px;
+			width: 320px;
+			height: 200px;
+			margin: 100px auto 0;
+			position: relative;
+			transform-style: preserve-3d;
+			cursor: pointer;
+		}
+
+		.container div {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 320px;
+			height: 200px;
+			line-height: 220px;
+			color: #333;
+			font-weight: bolder;
+			font-size: 40px;
+			text-align: center;
+			border-radius: 10px;
+			box-shadow: 0px 5px 5px #ccc;
+			background: linear-gradient(180deg,#aaa,#bbb,#ccc,#ddd,#eee,#fff);
+			transition: all 1s;
+		}
+
+		.right2 {
+			transform: translateX(-520px) translateZ(-300px);
+			z-index: 4;
+		}
+		
+		.right1 {
+			transform: translateX(-260px) translateZ(-150px);
+			z-index: 5;
+		}
+		
+		.king {
+			z-index: 6;
+			transform:translate(0);
+		}
+
+		.left1 {
+			z-index: 5;
+			transform: translateX(260px) translateZ(-150px);
+		}
+
+		.left2 {
+			z-index: 4;
+			transform: translateX(520px) translateZ(-300px);
+		}
+
+		.bench-warmer {
+			opacity: 0;
+			transform: translateX(0px) translateZ(-300px);
+		}
+
+		.stage span {
+			position: absolute;
+			width: 60px;
+			height: 50px;
+			background-color: rgba(222,222,222,.4);
+			color: #fff;
+			font-weight: bolder;
+			text-align: center;
+			line-height: 50px;
+			font-size: 40px;
+			z-index: 10;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		#prev {
+			left:-350px;
+		}
+
+		#next {
+			right:-350px;
+		}
+	
+	</style>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+
+		$(function(){
+
+			var classes = ['right2','right1','king','left1','left2','bench-warmer'];
+			var doMove = false; //判断是否正在运动
+
+
+			// 给每一个图片添加初始化类名及初始化样式
+			$('.container div').each(function(){
+
+				$(this).addClass(classes[$(this).index()]);
+
+			})
+
+
+			// 向前按钮
+			$('#prev').click(function(){
+
+
+				if(doMove==false){ //没有运动
+
+					//开始运动
+					doMove = true;
+
+					// 点击向前按钮，则将数组的第一个扔到最后一个
+					classes.push(classes.shift());
+
+					$('.container div').each(function(){
+
+						$(this).removeClass().addClass(classes[$(this).index()]);
+
+					})
+
+					// 等待运动完成后（根据animation设置的时间）将状态确认为未运动。
+					setTimeout(function(){
+						doMove = false;
+					}, 1000);
+
+				}
+
+			})
+
+
+			// 向后按钮
+			$('#next').click(function(){
+
+				if(!doMove){
+
+					doMove=true;
+
+					// 点击向后按钮，则将数组的最后一个扔到第一个
+					classes.unshift(classes.pop());
+
+					$('.container div').each(function(){
+
+						$(this).removeClass().addClass(classes[$(this).index()]);
+
+					})
+
+					setTimeout(function(){
+
+						doMove=false;
+
+					},1000)
+				}
+
+			})
+
+			/*var arr = [1,53,567,4,1543,'bfds']
+
+			for( m in arr ) {
+				// console.log(m);
+				console.log(arr[m]);
+
+			}*/
+
+			// 单击某一个图片，该图片居中靠前显示
+
+			$('.container div').each(function(){
+
+				$(this).click(function(){
+
+					var curKingIdx = $('[class="king"]').index();
+
+					if(curKingIdx>$(this).index()){
+
+						if(!doMove){
+
+							doMove=true;
+
+							var splice1 = classes.splice( 0,(curKingIdx-$(this).index()) );
+							// var splice1 = curKingIdx>$(this).index()?classes.splice( 0,(curKingIdx-$(this).index()) ) : classes.splice( $(this).index()-curKingIdx ) ;
+
+							for( j in splice1 ) {
+
+								classes.push(splice1[j]);
+
+								// console.log(classes);
+
+							}
+
+							$('.container div').each(function(){
+
+								$(this).removeClass().addClass(classes[$(this).index()]);
+
+							});
+
+							setTimeout(function(){
+
+								doMove=false;
+
+							},1000);
+
+						}
+
+					} else if(curKingIdx<$(this).index()){
+
+						if(!doMove){
+
+							doMove=true;
+
+							var splice1 = classes.splice( curKingIdx-$(this).index() ) ;
+
+							for( j in splice1 ) {
+
+								classes.unshift(splice1[j]);
+
+							}
+
+							$('.container div').each(function(){
+
+								$(this).removeClass().addClass(classes[$(this).index()]);
+
+							});
+
+							setTimeout(function(){
+
+								doMove=false;
+
+							},1000);
+
+						}
+
+					} else {
+
+						return false;
+					}
+
+				})
+
+			})
+
+		})
+
+	</script>
+
+</head>
+<body>
+	<div class="stage">
+		<div class="container">
+			<div class="">Picture 1</div>
+			<div class="">Picture 2</div>
+			<div class="">Picture 3</div>
+			<div class="">Picture 4</div>
+			<div class="">Picture 5</div>
+			<div class="">Picture 6</div>
+		</div>
+		<span id="prev">&lt;</span>
+		<span id="next">&gt;</span>
+	</div>
+</body>
+</html>

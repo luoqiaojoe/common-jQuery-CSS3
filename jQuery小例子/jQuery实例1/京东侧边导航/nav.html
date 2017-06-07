@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{padding:0;margin:0;list-style:none}
+div{width:100%;height:500px;width:1000px;margin:0 auto}
+.nav{width:30px;position:fixed;left:50px;top:50%;margin-top:-150px;display:none}
+.nav li{width:30px;height:30px;border-bottom:1px dashed #ccc;font-size:14px;line-height:26px;text-align:center;color:#62535;cursor:pointer}
+.nav li a{display:block}
+.nav .current a{display:none}
+.nav li .etitle{display:none}
+.nav .current .etitle{display:block;color:#c81623;font-size:12px}
+.nav .hover a{display:none}
+.nav .hover .etitle{display:block;background:#c81623;color:#fff;font-size:12px}
+#banner{height:700px;}
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var lists=$('div:gt(0)');
+	var colors=['red','green','blue','orange','pink','gold','purple','#f60','yellow','blue','red'];
+
+	lists.each(function(index, element) {
+        $(element).css('background', colors[index]);
+    });
+
+
+	nav_bar($('.nav li'), lists);
+
+
+
+	function nav_bar(navs, lists){
+		var lists_top=[];
+		lists.each(function(index, element) {
+			lists_top[index] = $(element).offset().top;
+		});
+
+
+		//当鼠标点击导航栏的时候
+		navs.click(function(e) {
+			$(this).addClass('current').siblings().removeClass('current');
+
+			//窗口滚动到指定的位置
+			$('html,body').stop().animate({scrollTop:lists_top[$(this).index()]}, 500);
+		});
+
+		//当鼠标移上或离开导航栏的时候
+		navs.hover(function(e) {
+			$(this).toggleClass('hover');
+		});
+
+
+		var certain_height=$(window).height()/2;
+		//当窗口滚动的时候
+		$(window).scroll(function(e) {
+			//console.log($(window).scrollTop());
+			var win_center=$(window).scrollTop()+certain_height;  //页面中央的文档坐标值
+			var current_nav=lists_top.length-1;  //默认最后一楼
+
+			//判断当前窗口位于哪一楼
+			for(var i=0; i<lists_top.length; i++){
+				if(lists_top[i]>win_center){
+					current_nav=i-1;
+					break;
+				}
+			}
+
+			if(current_nav<0){  //current_nav<0时，表示位于summary哪一楼，不应该显示导航栏
+				navs.parent().hide();
+			}else{
+				navs.parent().show();
+				navs.eq(current_nav).addClass('current').siblings().removeClass('current');
+			}
+		});
+	}
+
+})
+</script>
+</head>
+
+<body>
+
+    <ol class="nav">
+        <li class="current">
+            <a>1F</a>
+            <a class="etitle">服饰</a>
+        </li>
+        <li>
+            <a>2F</a>
+            <a class="etitle">美妆</a>
+        </li>
+        <li>
+            <a>3F</a>
+            <a class="etitle">手机</a>
+        </li>
+        <li>
+            <a>4F</a>
+            <a class="etitle">家电</a>
+        </li>
+        <li>
+            <a>5F</a>
+            <a class="etitle">数码</a>
+        </li>
+        <li>
+            <a>6F</a>
+            <a class="etitle">运动</a>
+        </li>
+        <li>
+            <a>7F</a>
+            <a class="etitle">居家</a>
+        </li>
+        <li>
+            <a>8F</a>
+            <a class="etitle">母婴</a>
+        </li>
+        <li>
+            <a>9F</a>
+            <a class="etitle">食品</a>
+        </li>
+        <li>
+            <a>10F</a>
+            <a class="etitle">图书</a>
+        </li>
+        <li>
+            <a>11F</a>
+            <a class="etitle">服务</a>
+        </li>
+    </ol>
+
+
+
+    <div id="banner">Summary<h1>向下滑动，左侧会显示导航栏</h1></div>
+    <div id="costume">
+        服饰
+    </div>
+    <div id="cosmetic">
+        美妆
+    </div>
+    <div id="phone">
+        手机
+    </div>
+    <div id="apparatus">
+        家电
+    </div>
+    <div id="digital">
+        数码
+    </div>
+    <div id="sport">
+        运动
+    </div>
+    <div id="home">
+        居家
+    </div>
+    <div id="pregnant">
+        母婴
+    </div>
+    <div id="food">
+        食品
+    </div>
+    <div id="book">
+        图书
+    </div>
+    <div id="service">
+        服务
+    </div>
+</body>
+</html>

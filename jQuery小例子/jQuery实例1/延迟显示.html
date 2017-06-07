@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>延迟显示</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;	
+		}
+		.box1 {
+			width: 100%;
+			height: 1000px;
+			background-color: #ccc;
+			font-size: 60px;
+		}
+		.box2 {
+			width: 100%;
+			background-color: #fff;
+		}
+
+		.box2 ul {
+			margin: 200px auto;
+			width: 700px;
+			height: 100px;
+		}
+
+		.box2 ul li{
+			list-style: none;
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 0 20px;
+			border-radius: 50%;
+			background-color: skyblue;
+			opacity: 0;
+			transform: scale(0.1);
+		}
+
+		.box2 ul li.move {
+			animation: move 1s ease-out forwards;
+		}
+
+		@keyframes move {
+
+			0%{opacity: 0;transform: scale(0.1);}
+			40%{opacity: 0.8;transform: scale(1.2);}
+			100%{opacity: 1;transform: scale(1);}
+
+		}
+
+		.box3 {
+			width: 100%;
+			height: 300px;
+			background-color: #123;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+
+			var oDiv = document.querySelector('.box2 ul');
+			var oDivTop = oDiv.offsetTop;
+			var oLis = oDiv.querySelectorAll('ul li');
+
+			document.onscroll = function(){
+
+			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+			var dClientH = document.body.clientHeight;
+
+				console.log(scrollTop,oDivTop,dClientH);
+
+				if(scrollTop + dClientH >oDivTop){
+
+					for(var i=0;i<oLis.length;i++){
+
+						oLis[i].className = 'move';
+						oLis[i].style.animationDelay = i/3 +'s';
+
+					}
+
+
+				}
+
+			}
+
+		}
+
+
+	</script>
+</head>
+<body>
+	<div class="box1">往下拉</div>
+	<div class="box2">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="box3"></div>
+	<div class="box3"></div>
+	<div class="box3"></div>
+	<div class="box3"></div>
+	<div class="box3"></div>
+</body>
+</html>

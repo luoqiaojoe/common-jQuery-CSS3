@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>炫一点</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		@font-face {
+		   font-family: 'iconfont';
+		   src: url('font/iconfont.eot');
+		   src: url('font/iconfont.eot?#iefix') format('embedded-opentype'),
+		   url('font/iconfont.woff') format('woff'),
+		   url('font/iconfont.ttf') format('truetype'),
+		   url('font/iconfont.svg#iconfont') format('svg');
+		}
+
+		body{
+			background-color: #000;
+		}
+
+		#div1{
+			position: relative;
+			width: 120px;
+			height: 30px;
+			margin: 40px auto;
+			border: 1px solid #3d8153;
+			color: #fff;
+			line-height: 30px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.one{
+			position: absolute;
+			width: 0px;
+			height: 1px;
+			top: -1px;
+			left: -220px;
+			background-color: #fff;
+		}
+
+		.two{
+			position: absolute;
+			width: 1px;
+			height: 0px;
+			top: -220px;
+			right: -1px;
+			background-color: #fff;
+		}
+
+		.three{
+			position: absolute;
+			width: 0px;
+			height: 1px;
+			top: 31px;
+			right: -220px;
+			background-color: #fff;
+		}
+
+		.four{
+			position: absolute;
+			width: 1px;
+			height: 0px;
+			top: 220px;
+			left: -1px;
+			background-color: #fff;
+		}
+
+		.airplane {
+			font-family: "iconfont" !important;
+			color: #fff;
+			width:80px;
+			margin: 60px auto;
+			font-size: 80px;
+			transition: 0.3s ease;
+		}
+
+		.airplane:hover {
+			
+			transform: rotate(-360deg);
+			width:120px;
+			/*transform: scale(1.2,1.2);*/
+		}
+
+
+	</style>
+
+	<script>
+		function getStyle(obj,attr){
+
+			return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+
+		}
+
+
+		function domove(obj,json,fn) {
+
+			clearInterval(obj.timer);
+
+			obj.timer = setInterval(function(){
+
+				var bStop = true;
+
+				for( attr in json){
+
+					var iCur = 0;
+
+					if(attr == 'opacity'){
+
+						iCur = parseInt(parseFloat(getStyle(obj,attr))*100)
+
+					} else{
+						iCur = parseInt(getStyle(obj,attr));
+					}
+
+					iSpeed = (json[attr] - iCur)/2;
+
+					iSpeed = iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+
+
+					if(iCur!=json[attr]){
+						bStop = false;
+					}
+
+					if(attr=='opacity'){
+
+						obj.style.filter = 'alpha(opacity:'+(iCur+iSpeed)+')';
+						obj.style.opacity = (iCur+iSpeed)/100;
+
+					} else{
+						obj.style[attr] = iCur + iSpeed +'px';
+					}
+				}
+
+				if(bStop){
+					clearInterval(obj.timer);
+					if(fn){
+						fn();
+					}
+				}
+
+			},30)
+		 
+		}
+	window.onload = function() {
+
+		var div = document.getElementById('div1');
+
+		var oSpan = document.getElementsByTagName('span');
+
+
+		div.onmouseover = function() {
+
+			domove(oSpan[0],{width:122,left:-1});
+
+			domove(oSpan[1],{height:32,top:-1});
+
+			domove(oSpan[2],{width:122,right:-1});
+
+			domove(oSpan[3],{height:32,top:-1});
+
+			this.style.color = "#3d8153";
+
+		}
+
+		div.onmouseout = function() {
+
+			domove(oSpan[0],{width:0,left:-220});
+
+			domove(oSpan[1],{height:0,top:-220});
+
+			domove(oSpan[2],{width:0,right:-220});
+
+			domove(oSpan[3],{height:0,top:-220});
+
+			this.style.color = "#fff";
+		}
+	}
+
+	</script>
+</head>
+<body>
+	
+	<div class="airplane">&#xe60c;</div>
+
+
+	<div id="div1">
+		<span class="one"></span>
+		<span class="two"></span>
+		<span class="three"></span>
+		<span class="four"></span>
+		开始游戏
+	</div>
+
+</body>
+</html>

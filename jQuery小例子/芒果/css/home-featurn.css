@@ -1,0 +1,661 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body a{
+	text-decoration: none;
+
+
+}
+
+/*-----------home-featurn" start--------*/
+.home-featurn{
+	width: 1240px;
+	margin: 20px auto 0px;
+}
+.feature-item1{
+	width: 100%;
+	height: 327px;
+}
+.home-featurn .feature-item1 ul li{
+	float: left;
+	height: 326px;
+    border-radius: 6px;
+    margin-right:10px;
+    position: relative;
+    overflow:hidden;
+    cursor: pointer;
+    list-style: none;
+
+}
+/*最后一个边框设置为margin 0*/
+.home-featurn .feature-item1 ul li:last-of-type{
+	margin:0;
+}
+/*.home-featurn .feature-item1 ul li+li{
+	margin-left: 10px;
+}*/
+.home-featurn .feature-item1 a{
+	width: 100%;
+	text-align: center;
+	height: 326px;
+	text-decoration: none;
+}
+.home-featurn .feature-item1 a p:nth-of-type(1){
+	font-size: 24px;
+}
+.home-featurn .feature-item1 p{
+	margin-top: 20px;
+}
+/*第一张图片*/
+.home-featurn .feature-item1 .home-pic1 p{
+	color: #550506;
+	font-size: 16px;
+	font-weight: 900;
+}
+.home-featurn .feature-item1 .home-pic1{
+	position: absolute;
+	top: -328px;
+	left: 0px;
+	background: rgba(239,171,150,.5);
+	
+}
+/*第二张图片*/
+.home-featurn .feature-item1 .home-pic2{
+	position: absolute;
+	top: -328px;
+	left: 0px;
+	background: rgba(148,171,69,.5);
+	
+}
+.home-featurn .feature-item1 .home-pic2 p{
+	color: #878548;
+}
+/*第三张图片*/
+.home-featurn .feature-item1 .home-pic3{
+	position: absolute;
+	top: -328px;
+	left: 0px;
+	background: rgba(71,204,235,.5);
+}
+.home-featurn .feature-item1 .home-pic3{
+	color: #3490f0;
+}
+/*第四张图片*/
+.home-featurn .feature-item1 .home-pic4{
+	position: absolute;
+	top: -328px;
+	left: 0px;
+	background: rgba(151,234,252,.5);
+}
+.home-featurn .feature-item1 .home-pic4{
+	color: #1d9ab8;
+}
+/*------"home-featurn" end-----------*/
+
+
+
+/*出境游开始*/
+.home-cont-item{
+	width: 1240px;
+	margin: 20px auto 0px;
+}
+.home-cont-item .home-title{
+	background: url(../img/bg_line.png)  left 48px repeat-x;
+	height: 70px;
+	position: relative;
+}
+.home-cont-item .home-title h2{
+	width: 270px;
+	height: 75px;
+	background: url(../img/title.png) no-repeat 0px 0px;
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	margin-left: -135px;
+	text-indent: -9999px;
+}
+.home-cont-item .home-nav {
+	/*margin-top: 20px;*/
+	padding: 20px;
+	position: relative;
+	
+}
+.home-cont-item .home-nav ul{
+	display: table;
+	margin: 0px auto;
+	overflow: hidden;
+}
+.home-cont-item .home-nav ul li{
+	float: left;
+	list-style: none;
+	padding: 0px 4px;
+	height: 23px;
+	line-height: 23px;
+	margin-left: 15px;
+	font-size: 14px;
+	cursor: pointer;
+	text-align: center;
+}
+.home-cont-item .home-nav .on{
+	color: #f60;
+	border-top:1px solid #f60;
+	border-bottom:3px solid #f60;
+}
+
+/*-----------home-content-l-----------*/
+.home-content{
+	overflow: hidden;
+}
+.home-content .home-content-l{
+	float: left;
+}
+.home-content .home-content-l .home-content-l-pic{
+	width: 235px;
+	height: 600px;
+	position: relative;
+}
+.home-content-l .home-content-l-pic .home-content-navimg span{
+	width: 233px;
+	height: 599px;
+	background: url(../img/11.png) no-repeat;
+	display: block;
+	overflow: hidden;
+}
+.home-content-l .home-content-l-pic .navtitle{
+	width: 120px;
+	height: 100px;
+	position: absolute;
+	left: 30px;
+	top: 30%;
+	text-align: center;
+	
+}
+.home-content-l .home-content-l-pic .navtitle a{
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	padding: 3px;
+	
+}
+.home-content-l .home-content-l-pic .navtitle a:nth-of-type(2){
+	background: #2287d8;
+	border-radius: 15%;
+}
+.home-content-l .home-content-l-pic .navtitle a:hover{
+	background: #2287d8;
+	display: inline-block;
+	-webkit-border-radius: 15%;
+	-moz-border-radius: 15%;
+	-ms-border-radius: 15%;
+	-o-border-radius: 15%;
+	border-radius: 15%;
+	text-align: center;
+}
+.home-content-l .home-content-l-pic .home-content-navimg{
+	width: 233px;
+	height: 599px;
+	position: relative;
+	overflow: hidden;
+}
+.home-content-l .home-content-l-pic .home-content-navimg b{
+	display: inline-block;
+	width: 100px;
+	height: 599px;
+	overflow: hidden;
+	position: absolute;
+	left: 20px;
+	top: -415px;
+	background: -webkit-linear-gradient(left,rgba(255,255,255,0)0,rgba(255,255,255,.4)50%,rgba(255,255,255,0)100%);
+	transform:rotate(45deg);/*----图片白光----*/
+}
+/*--------------------右边tab 切换------*/
+.home-cont-item .home-content .home-content-r{
+	width: 996px;
+	height: 600px;
+	float: left;
+	/*position: relative;*/
+}
+.home-cont-item .home-content .home-content-r .home-content-r-pic{
+/*position: absolute;
+	left: 0px;
+	top: 0px;*/
+	width: 100%;
+	height: 600px;
+	
+}
+/*图片显示*/
+.home-cont-item .home-content .home-content-r .home-content-r-pic.on1{
+	display:block;
+}
+.home-content .home-content-r .home-content-r-pic ul{
+	list-style: none;
+	overflow: hidden;
+}
+.home-content .home-content-r .home-content-r-pic ul li{
+	float: left;
+	width: 475px;
+	height: 275px;
+	margin:10px;
+	display: inline;
+	overflow: hidden;
+	position: relative;
+}
+.home-content .home-content-r-pic .prc-cont{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	background: #fff;
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+}
+.home-content .home-content-r-pic .prc-cont .prc-cont-1{
+	margin-left: 20px;
+	margin-top: 5px;
+	float: left;
+}
+.home-content-r-pic .prc-cont .prc-cont-1 .prc-cont-y{
+	color: #666;
+	font-size: 22px;
+	font-weight: bold;
+}
+.home-content-r-pic .prc-cont .prc-cont-1 .prc-cont-x{
+	color: #ccc;
+
+}
+.home-content-r-pic .prc-cont .prc-cont-pic{
+	float: right;
+	margin-right: 30px;
+	color: #ff6600;
+	margin-top: 15px;
+}
+.home-content-r-pic .prc-cont .prc-cont-pic em{
+	font-size: 24px;
+	font-style: normal;
+	font-weight: bold;
+	
+}
+.home-cont-item .home-content-r .prc-conton{
+	position: absolute;
+	left: -475px;
+	top: 0px;
+	background: rgba(0,0,0,.5);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+}
+
+/*迪拜6日游字体进入 p1	*/
+.home-cont-item .home-content-r .home-content-r-pic li:hover .prc-tyop1{
+transform: translateX(0);
+transition: all .45s ease-in-out .1s;   /* 规定以慢速开始和结束的过渡效果*/
+/*transition: 0.2s all 0.1s;*/
+
+}
+/*迪拜6日游字体进入 p2	*/
+.home-cont-item .home-content-r .home-content-r-pic li:hover .prc-tyop2{
+	transform: translateX(0);
+	transition: all .35s ease-in-out .3s;/* 规定以慢速开始和结束的过渡效果*/
+}
+.home-cont-item .home-content-r .prc-conton .prc-tyop1{
+	color: #ffe605;
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 30px;
+	transform: translateX(-300px);  /*向X轴平移300px*/
+
+
+}
+.home-cont-item .home-content-r .prc-conton .prc-tyop2{
+	margin: 0 auto;
+	width: 350px;
+	height: 32px;
+	overflow: hidden;
+    padding-top: 10px;
+    color: #fff;
+    font-size: 14px;
+    margin-bottom:30px;
+    transform: translateX(-474%); /*向X轴平移*/
+}
+
+
+/*------------ppp3 类------*/
+.home-cont-item .home-content-r .prc-conton .prc-tyop3 em{
+  font-style: normal;
+    font-family: Arial;
+    font-size: 60px;
+    font-weight: bold;
+}
+/*------------ppp3 类------*/
+.home-cont-item .home-content-r .prc-conton .prc-tyop3{
+	font-size: 30px;
+	width: 200px;
+	margin: 0 auto;
+	/*transform:translateZ(200px);*/
+	/*transform: perspective(600px);*/
+}
+.home-cont-item .home-content-r .home-content-r-pic li:hover .prc-tyop3{
+	transform: scale(.7);/*缩放*/
+	 transition: all .4s ease-in-out .4s;/* 规定以慢速开始和结束的过渡效果*/
+}
+
+/*----ppp4--*/
+.home-cont-item .home-content-r .prc-conton .prc-tyop4{
+	display: block;
+	width: 160px;
+	padding: 6px 0px;
+	text-align: center;
+	margin: 0px auto;
+	border: 1px solid #fff;
+	border-radius: 20px;
+	font-size: 20px;
+	margin-top: 10px;
+	transform: translateY(400%);/*向Y轴平移*/
+}
+/*-------ppp4.hover 事件*/
+.home-cont-item .home-content-r .home-content-r-pic li:hover .prc-tyop4{
+	    transition: all .45s ease-in-out .5s;
+	    transform: translateY(0);
+}
+/*.on1{display:block;} */  /*这个选择器是tab选项卡时候的例外一种方法类加的*/
+
+/*-------国内游开始------*/
+.home-cont-item1 .home-title h2{
+	width: 270px;
+	height: 75px;
+	background: url(../img/title.png) no-repeat 0px -70px;
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	margin-left: -135px;
+	text-indent: -9999px;
+}
+.home-cont-item1 .home-content .home-content-navimg span{
+	width: 233px;
+	height: 599px;
+	background: url(../img/22.png) no-repeat;
+	display: block;
+	overflow: hidden;
+}
+
+
+/*-------------周边游---------*/
+.home-cont-item2 .home-title h2{
+	width: 270px;
+	height: 75px;
+	background: url(../img/title.png) no-repeat 0px -140px;
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	margin-left: -135px;
+	text-indent: -9999px;
+}
+.home-cont-item2 .home-content .home-content-navimg span{
+	width: 233px;
+	height: 599px;
+	background: url(../img/31.png) no-repeat 0 0;
+	display: block;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.home-cont-item2 .home-content .zbyziti span{
+	width: 120px;
+	height: 30px;
+	position: absolute;
+	left: 30px;
+	top: 30%;
+	text-align: center;
+	color: #fff;
+	background:#f0d79f;
+	border-radius: 30px;
+	line-height: 30px;
+}
+
+/*...游轮开始...*/
+.home-cont-item3 .home-title h2{
+	width: 270px;
+	height: 75px;
+	background: url(../img/title.png) no-repeat 0px -210px;
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	margin-left: -135px;
+	text-indent: -9999px;
+}
+.home-cont-item3 .home-content{
+	margin-bottom: 10px;
+
+}
+.home-cont-item3 .home-content .home-cc1{
+	display: block;
+	height: 366px;
+	background-color: #8bd8ec;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic{
+	
+	width: 232px;
+	height: 100%;
+	background: url(../img/y.jpg) no-repeat center bottom;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic ul {
+    padding: 21px 24px;
+    list-style: none;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic ul li{
+	height: 79px;
+	line-height: 80px;
+	font-size: 16px;
+	color: #0c90b2;
+	overflow: hidden;
+	border-bottom: 1px solid #fff;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs{
+	
+	width: 200px;
+	height: 79px;
+	line-height: 30px;
+	margin-left: 20px;
+	text-align: center;
+	line-height: 79px;
+	position: relative;
+	transform:translateX(0px);	
+	transition: all 0.5s ease 0s;
+}
+/*邮轮鼠标事件*/
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs:hover{
+	transform:translateX(-55px);
+	transition: all 0.5s ease 0s;
+	
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs .rr {
+	
+	color:#ff7200;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs img{
+	vertical-align: middle;
+	
+}
+/*皇家邮轮字体*/
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs span{
+	margin: 0px 10px;
+	font-size: 16px;
+	color: #0055aa;
+}
+/*..哥斯达邮轮..*/
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs1 img{
+	vertical-align: middle;
+	
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs1{
+	width: 220px;
+	height: 79px;
+	line-height: 30px;
+	text-align: center;
+	margin-left: 20px;
+	line-height: 79px;
+	position: relative;
+	transform:translateX(0px);	
+	transition: all 0.5s ease 0s;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs1 span{
+	margin: 0px 15px;
+	font-size: 16px;
+	color: #0055aa;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs1:hover{
+	transform:translateX(-80px);
+	transition: all 0.5s ease 0s;	
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs1 .rr {
+	
+	color:#ff7200;
+}
+/*.....天海邮轮....*/
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs2{
+	
+	width: 200px;
+	height: 79px;
+	line-height: 30px;
+	margin-left: 25px;
+	text-align: center;
+	line-height: 79px;
+	position: relative;
+	transform:translateX(0px);	
+	transition: all 0.5s ease 0s;
+	color: #0055aa;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs2 img{
+	vertical-align: middle;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs2 span{
+	margin: 0px 30px;
+	font-size: 16px;
+	
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs2 .rr {
+	
+	color: #ff7200;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs2:hover{
+	transform:translateX(-80px);
+	transition: all 0.5s ease 0s;	
+}
+/*.....丽星邮轮.....*/
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs3{
+	
+	width: 230px;
+	height: 79px;
+	line-height: 30px;
+	margin-left: 11px;
+	text-align: center;
+	line-height: 79px;
+	position: relative;
+	transform:translateX(0px);	
+	transition: all 0.5s ease 0s;
+	color: #0055aa;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs3 img{
+	vertical-align: middle;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs3 span{
+	margin: 0px 25px;
+	font-size: 16px;
+	
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs3 .rr {
+	 color: #ff7200;
+}
+.home-cont-item3 .home-content .home-content-l-p1ic .homedivs3:hover{
+	transform:translateX(-80px);
+	transition: all 0.5s ease 0s;	
+}
+.home-cont-item3 .home-content .home-content-l-p1ic li:last-of-type{
+	border-bottom: none;
+}
+/*游轮的图片切换*/
+.home-contents .ry{
+	float: left;
+}
+.home-content .home-content-rs{
+	width: 1000px;
+	height: 364px;
+	float: left;
+	border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    overflow: hidden;
+}
+.home-content .home-content-rs .clear{
+	list-style: none;
+}
+.home-content .home-content-rs ul li{
+	float: left;
+	display: inline;
+	width: 474px;
+	height: 152px;
+	margin-top: 20px;
+    overflow: hidden;
+    margin-left: 20px;
+    border: 1px solid #ededed;
+}
+.home-content .home-content-rs ul li a{
+	color: #666;
+}
+.home-content .home-content-rs .yl-prc{
+	float: left;
+	width: 282px;
+    height: 152px;
+    position: relative;
+    overflow: hidden;
+}
+/*----------------邮轮凸出---------------------------*/
+.home-content .home-content-rs .yl-prc img{        /*-*/
+	width: 100%;									/*_*/
+	height: 100%;                                  /*_*/
+	transition:all 1s ease 0s;                     /*_*/
+}
+/*---------------------邮轮--------------*/
+.home-content .home-content-rs .aaa:hover img{
+	-webkit-transform:scale(1.3);
+	-moz-transform:scale(1.3);
+	-ms-transform:scale(1.3);
+	-o-transform:scale(1.3);
+	transform:scale(1.3);
+
+}
+.home-content .home-content-rs .yl-cont{
+	float: right;
+    width: 160px;
+    padding: 15px 15px 0;
+    overflow: hidden;
+}
+.home-content .home-content-rs .yl-cont-pic1{
+	    height: 44px;
+    line-height: 22px;
+    font-size: 16px;
+    overflow: hidden;
+    padding-top: 2px;
+}
+.home-content .home-content-rs .yl-cont-pic2{
+	color: #f60;
+    padding: 15px 0 8px;
+    border-bottom: 1px dashed #ccc;
+   font-weight: bold;
+}
+.home-content .home-content-rs .yl-cont-pic2 .p-start-price{
+	    font-size: 24px;
+}
+.home-content .home-content-rs .yl-cont-pic2 .p-start-price em{
+	font-style: normal;
+}
+.home-content .home-content-rs .yl-cont-pic3{
+	    padding-top: 10px;
+    color: #999;
+}
+.fl{
+	float: left;
+}
+.f2{
+	float: left;
+}

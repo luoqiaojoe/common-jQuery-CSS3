@@ -1,0 +1,232 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹窗拖拽和放大缩小-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<style>
+body {
+	font-family:'微软雅黑','arial';
+}
+* {
+	padding:0;
+	margin:0;
+}
+/* 弹窗 */
+.m-xloginPanel {
+	width:600px;
+	height:300px;
+	left:40px;
+	top:40px;
+	position:absolute;
+	border:1px solid #3683cb;
+	background:#fff;
+}
+.m-xloginPanel i {
+	position:absolute;
+	z-index:2;
+}
+.m-xloginPanel i.bart,.m-xloginPanel i.barb {
+	height:4px;
+	left:-1px;
+	right:-1px;
+	/*background:#ffc;
+	*/cursor:n-resize;
+}
+.m-xloginPanel i.bart {
+	top:-1px;
+}
+.m-xloginPanel i.barb {
+	bottom:-1px;
+}
+.m-xloginPanel i.barr,.m-xloginPanel i.barl {
+	width:4px;
+	top:-1px;
+	bottom:-1px;
+	cursor:e-resize;
+	/*background:#ffc;
+	*/
+}
+.m-xloginPanel i.barl {
+	left:-1px;
+}
+.m-xloginPanel i.barr {
+	right:-1px;
+}
+.m-xloginPanel i.bar {
+	width:14px;
+	height:14px;
+	cursor:nw-resize;
+	bottom:-1px;
+	right:-1px;
+	background:url(../images/drag_ico.gif) no-repeat;
+}
+.m-xloginPanel .content {
+	position:absolute;
+	width:100%;
+}
+.m-xloginPanel .content h3 {
+	font-weight:normal;
+	color:#fff;
+	font-size:24px;
+	text-align:left;
+	background:#3683cb;
+	height:60px;
+	line-height:60px;
+	overflow:hidden;
+	padding-left:20px;
+	margin:4px;
+	cursor:move;
+}
+.m-xloginPanel .content p {
+	font-size:22px;
+	color:#666;
+	padding:10px 14px;
+	text-indent:44px;
+	line-height:36px;
+	margin:0;
+	z-index:3;
+}
+</style>
+</head>
+<body>
+<div class="m-xloginPanel J-xloginPanel">
+	<i class="bart"></i>
+	<i class="barb"></i>
+	<i class="barr"></i>
+	<i class="barl"></i>
+	<i class="bar"></i>
+	<div class="content">
+		<h3> 积分就能转动它哦！</h3>
+		<p>一人画了一个湖，湖面平静，好像一面镜子；另外还画了些远山和湖边的花草，让它们倒映在水面</p>
+	</div>
+</div><script>
+;(function($){
+	$.fn.myPlugin = function(options) {
+		var $doc = $(document);
+		var defaults = {
+			parentdraf : '.J-xloginPanel' , // 拖拽元素父级
+			draftin : '.J-xloginPanel h3' , // 拖拽元素
+			sizeLeft : '.J-xloginPanel .barl', // 改变大小左边
+			sizeRight : '.J-xloginPanel .barr', // 改变大小右边
+			sizeTop : '.J-xloginPanel .bart', // 改变大小上边
+			sizeBottom : '.J-xloginPanel .barb',  // 改变大小下边
+			sizeSkew : '.J-xloginPanel .bar'
+		};
+		var settings = $.extend({} , defaults, options);
+		
+		/* 拖拽 */
+		$(settings.draftin).on('mousedown' , dragmove);
+		function dragmove(event){
+			event = event || window.event;
+			var disX = event.pageX - $(settings.parentdraf).offset().left;
+			var disY = event.pageY - $(settings.parentdraf).offset().top;
+			$doc.on('mousemove',move);
+			function move(event){
+				event = event || window.event;
+				var mouseX = event.pageX - disX;
+				var mouseY = event.pageY - disY;
+				var maxX = document.documentElement.clientWidth - $(settings.parentdraf).outerWidth(),
+					maxY = document.documentElement.clientHeight - $(settings.parentdraf).outerHeight();
+				if(mouseX < 0){
+					mouseX = 0;
+				}else if(mouseX > maxX){
+					mouseX = maxX;
+				}
+				if(mouseY < 0){
+					mouseY = 0;
+				}else if(mouseY > maxY){
+					mouseY = maxY;
+				}
+			   $(settings.parentdraf).css({'left' : mouseX+'px','top':mouseY+'px'});
+			};
+		};
+		
+		/* 左边 */
+		$(settings.sizeLeft).on('mousedown' , function(event){
+			event = event || window.event;
+			var $this = $(this);
+			var disX = $(settings.parentdraf).offset().left,
+				drafw = $(settings.parentdraf).width();
+			$doc.on('mousemove' , function(event){
+				event = event || window.event;
+				var mouseX = event.pageX;
+				if(mouseX < 0)mouseX=0;
+				$(settings.parentdraf).css({'left':mouseX +'px' , 'width':(disX-mouseX-4)+drafw +'px'})	
+			});	
+		});
+		
+		/* 右边 */
+		$(settings.sizeRight).on('mousedown' , function(event){
+			event = event || window.event;
+			var $this = $(this);
+			var disX = $(settings.parentdraf).offset().left;	
+			$doc.on('mousemove' , function(event){
+				event = event || window.event;
+				var mouseX = event.pageX-disX,
+					maxX = document.documentElement.clientWidth - disX - 2;
+				if(mouseX > maxX)mouseX = maxX;	
+				$(settings.parentdraf).css({'width':mouseX +'px'})	
+			});	
+		});
+		
+		/* 上边 */
+		$(settings.sizeTop).on('mousedown' , function(event){
+			event = event || window.event;
+			var $this = $(this);
+			var disY = $(settings.parentdraf).offset().top,
+				drafH = $(settings.parentdraf).height();
+			$doc.on('mousemove' , function(event){
+				event = event || window.event;
+				var mouseY = event.pageY,
+					range = disY-mouseY-4;
+				if(mouseY+4 > 0){
+					$(settings.parentdraf).css({'top':mouseY +'px' , 'height':range+drafH +'px'});
+				};
+			});	
+		});
+		
+		/* 下边 */
+		$(settings.sizeBottom).on('mousedown' , function(event){
+			event = event || window.event;
+			var $this = $(this);
+			var disY = $(settings.parentdraf).offset().top;	
+			$doc.on('mousemove' , function(event){
+				event = event || window.event;
+				var mouseY = event.pageY-disY,
+					maxY = document.documentElement.clientHeight - disY - 2;
+				if(mouseY > maxY)mouseY = maxY;
+				$(settings.parentdraf).css({'height':mouseY +'px'});	
+			});	
+		});
+		
+		/* 下斜 */
+		$(settings.sizeSkew).on('mousedown' , function(event){
+			event = event || window.event;
+			var $this = $(this),
+				disX = $(settings.parentdraf).offset().left,
+				disY = $(settings.parentdraf).offset().top;
+			$doc.on('mousemove' , function(event){
+				event = event || window.event;
+				var mouseX = event.pageX - disX + 14,
+					mouseY = event.pageY - disY + 14,
+					maxX = document.documentElement.clientWidth - disX - 2,
+					maxY = document.documentElement.clientHeight - disY - 2;
+				if(mouseX > maxX)mouseX = maxX;
+				if(mouseY > maxY)mouseY = maxY;
+				$(settings.parentdraf).css({'width':mouseX +'px' , 'height':mouseY + 'px'});	
+			});
+		});
+		
+		/* 松开鼠标 */
+		$doc.mouseup(function(){ 
+			$doc.off('mousedown')
+			$doc.off('mousemove')
+		});
+	};
+	$(document).ready(function(){
+		$('body').myPlugin();
+	});
+})(jQuery);</script>
+</body>
+</html>

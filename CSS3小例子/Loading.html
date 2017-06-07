@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Loading</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: #000;
+		}
+		.loading {
+			width: 100px;
+			height: 100px;
+			margin: 100px auto;
+			border: 10px solid #777;
+			border-left-color: #fff;
+			border-radius: 50%;
+			animation: loading infinite 1.2s ease-in-out; 
+		}
+
+		@keyframes loading {
+			
+			from {
+				transform: rotate(0deg);
+			}
+
+			to {
+				transform: rotate(360deg);
+			}
+
+		}
+
+		.progress {
+			width: 300px;
+			height: 20px;
+			margin: 0 auto;
+			background-color: #fff;
+			border-radius: 10px;
+		}
+
+		.progress span {
+			display: block;
+			width: 0px;
+			height: 20px;
+			border-radius: 10px;
+			animation: pgr infinite 3s;
+		}
+
+		@keyframes pgr {
+
+			0% {background-color: transparent;width: 0;}
+
+			100% {background-color: green;width: 300px;}
+
+		}
+	</style>
+</head>
+<body>
+	<div class="loading"></div>
+	<div class="progress">
+		<span></span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转角度</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		div {
+			position: absolute;
+			width: 50px;
+			height: 200px;
+			transform-origin: bottom;
+			transition: .5s ease-in-out;
+		}
+		
+		.box {
+			position: relative;
+			margin: 100px auto;
+			transform: rotate(-60deg);
+		}
+
+	</style>
+	<script>
+
+		window.onload = function() {
+
+			var aBox = document.getElementById('box');
+
+			var oDiv = aBox.getElementsByTagName('div');
+
+			var arrColor = ['red','yellow','blue','green','orange','cyan','red','yellow','blue','green','orange','cyan'];
+
+			// var arrDeg = ['-60deg','-50deg','-40deg','-30deg','-20deg','-10deg','0deg','10deg','20deg','30deg','40deg','50deg'];
+
+			var arrDeg = ['0deg','10deg','20deg','30deg','40deg','50deg','60deg','70deg','80deg','90deg','100deg','110deg',];
+
+			// var mZidex = 2;
+			var onOff = true;
+
+			for(var i=0; i<arrColor.length;i++) {
+
+				oDiv[i].style.backgroundColor = arrColor[i];
+
+				oDiv[i].onclick = function() {
+
+					// this.style.top = '-20px';
+
+					
+
+				}
+
+
+				aBox.onclick = function() {
+
+					if(onOff) {
+						for(var i=0;i<arrDeg.length;i++){
+							
+							oDiv[i].style.transform = 'rotate('+ arrDeg[i] + ')';
+							onOff = false;
+
+						} 
+					} else {
+
+						for(var i=0;i<arrDeg.length;i++){
+							
+							oDiv[i].style.transform = 'rotate(0)';
+							onOff = true;
+
+						} 
+
+					}
+				}
+
+
+			}
+
+
+
+		}
+
+	</script>
+</head>
+<body>
+	<div class="box" id="box">
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+		<div class="div4"></div>
+		<div class="div5"></div>
+		<div class="div6"></div>
+		<div class="div7"></div>
+		<div class="div8"></div>
+		<div class="div9"></div>
+		<div class="div10"></div>
+		<div class="div11"></div>
+		<div class="div12"></div>
+		
+	</div>
+	
+</body>
+</html>

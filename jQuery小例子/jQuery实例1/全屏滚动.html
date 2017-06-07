@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全屏滚动</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	.content {
+		width: 100%;
+		height: 500%;
+		position: relative;
+	}
+	.content div {
+		width: 100%;
+		height: 20%;
+		font-size: 60px;
+	}
+
+	.content .index {
+		background-color: #ccc;
+	}
+
+	.content .follow {
+		background-color: purple;
+	}
+
+	.content .dynamic {
+		background-color: yellow;
+	}
+
+	.content .style {
+		background-color: #eee;
+	}
+
+	.content .works {
+		background-color: #aaa;
+	}
+
+	.content ul {
+		position: fixed;
+		top: 0;
+		left: 200px;
+		border: 1px solid #000;
+
+	}
+
+	.content ul li {
+		list-style-type: none;
+		width: 100px;
+		height: 100px;
+		line-height: 100px;
+		text-align: center;
+		font-size: 30px;
+		background-color: #fff;
+		border-bottom: 1px solid #000;
+	}
+
+	.content ul li.on {
+		background-color: yellow;
+	}
+
+	.content ul li:last-child {
+		border-bottom: none;
+	}
+
+	</style>
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+	$(function(){
+
+		$('.content li').click(function(){
+
+			var idx = $(this).index();
+
+			$(this).addClass('on').siblings().removeClass('on');
+			$('html,body').stop(true).animate({scrollTop:$('.content div').eq(idx).offset().top});
+
+		})
+
+		
+
+	})
+	</script>
+</head>
+<body>
+	<div class="content">
+		<ul>
+			<li>首页</li>
+			<li>关注</li>
+			<li>动态</li>
+			<li>风格</li>
+			<li>作品</li>
+		</ul>
+		<div class="index">首页</div>
+		<div class="follow">关注</div>
+		<div class="dynamic">动态</div>
+		<div class="style">风格</div>
+		<div class="works">作品</div>
+		
+	</div>
+</body>
+</html>

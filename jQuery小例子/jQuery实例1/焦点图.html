@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>焦点图</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	div {
+		width: 650px;
+		margin: 50px auto 0;
+		position: relative;
+		overflow: hidden;
+	}
+
+	li {
+		list-style: none;
+		float: left;
+	}
+
+	ul {
+		width: 650px;
+		height: 250px;
+		position: relative;
+		border: 1px solid #000;
+		z-index: 1;
+	}
+	ul li {
+		position: absolute;
+	}
+
+	ol {
+		position: absolute;
+		right:10px;
+		bottom:10px;
+		z-index: 2;
+	}
+
+	ol li {
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		text-align: center;
+		margin-left: 5px;
+		background:#333;
+		border:1px solid #ccc;
+		color:#999;
+		font-weight: bold;
+		cursor:pointer;
+		overflow:hidden;
+	}
+
+	ol li.on{
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		margin-top:-10px;
+		background:#333; 
+		color:#f60; 
+		border:1px solid #f60; 
+		font-size:20px;
+	}
+
+	</style>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+	$(function(){
+
+		var zIdx = 0;
+
+		$('ol li').mouseenter(function(){
+
+			if(!$('ul li').is(':animated')){
+				
+				$(this).addClass('on').siblings().removeClass('on');
+				var thisIdx = $(this).index();
+				$('ul li').eq(thisIdx).css({left:650,zIndex:++zIdx}).stop(true,true).animate({left:0},1000);
+
+			}
+		})
+
+	})
+
+	</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li><img src="img/31/01.jpg" alt=""></li>
+			<li><img src="img/31/02.jpg" alt=""></li>
+			<li><img src="img/31/03.jpg" alt=""></li>
+			<li><img src="img/31/04.jpg" alt=""></li>
+			<li><img src="img/31/05.jpg" alt=""></li>
+		</ul>
+		
+		<ol>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li class="on">5</li>
+		</ol>
+	</div>
+</body>
+</html>

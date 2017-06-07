@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery 选项卡</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	.tab {
+		width: 404px;
+		margin: 100px auto;
+		position: relative;
+	}
+	#menu {
+		width: 403px;
+		height: 30px;
+		border: 1px solid #000;
+		text-align: center;
+	}
+
+	#menu li {
+		float: left;
+		width:100px;
+		height: 30px;
+		border-right: 1px solid #000;
+		list-style: none;
+	}
+
+	#menu li.on {
+		background-color: red;
+	}
+
+	#menu li:last-child {
+		border-right:none;
+	}
+
+	#content div {
+		width: 403px;
+		height: 300px;
+		border: 1px solid #000;
+		position: absolute;
+		top: 31px;
+		left: 0;
+		display: none;
+	}
+
+	#content div.on {
+		display: block;
+	}
+
+	</style>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+
+	$(function(){
+
+		$('#menu li').mouseenter(function(){
+
+			var idx = $(this).index();
+
+			$(this).addClass('on').siblings().removeClass('on');
+
+			$('#content div').eq(idx).addClass('on').siblings().removeClass('on');
+		})
+	})
+
+	</script>
+</head>
+<body>
+	<div class="tab">
+		<ul class="" id="menu">
+			<li class="on">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		
+		<div class="" id="content">
+			<div class="on">1111</div>
+			<div>2222</div>
+			<div>3333</div>
+			<div>4444</div>
+		</div>
+	</div>
+</body>
+</html>

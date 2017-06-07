@@ -1,0 +1,58 @@
+body {
+  background: #f3f5f6;
+}
+.header {
+  height: 192px;
+  background: #fff;
+  width: 100%;
+}
+/*********  团购站  start********/
+.content {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.content .tuan {
+  width: 1100px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px 0 40px 100px;
+  border: 1px solid #eef0f2;
+  border-top: none;
+}
+.content .tuan h2 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 20px;
+}
+.content .tuan ul {
+  overflow: hidden;
+}
+.content .tuan ul li {
+  width: 169px;
+  height: 104px;
+  float: left;
+  display: inline-block;
+  margin: 15px;
+}
+.content .tuan ul li a {
+  width: 169px;
+  height: 104px;
+  display: inline-block;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.content .tuan ul li a:hover {
+  border: 1px solid #ff7800;
+}
+.content .tuan ul li a img {
+  width: 100%;
+  height: 100%;
+  float: left;
+  background: #fff;
+}
+/*********  团购站  end********/
+.footer {
+  width: 100%;
+  background: #fff;
+}

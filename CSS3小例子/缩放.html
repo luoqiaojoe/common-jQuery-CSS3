@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>缩放</title>
+	<style>
+		body {
+			background-color: #ccc;
+		}
+		/*div {
+			width:100px;
+			margin: 100px auto;
+		}
+		img{
+			border: 10px solid transparent;
+			opacity:0;
+			width: 200px;
+			animation: haha infinite 1s ease-out;
+		}
+
+		@keyframes haha {
+
+			100% {
+				opacity: 1;
+				width: 100px;
+				border-color: #fff;
+				transform:scale(1);
+				transform:rotate(10deg);
+			}
+		}*/
+
+		.box {
+			width: 100px;
+			height: 140px;
+			margin: 100px auto;
+			position: relative;
+			perspective: 500px;
+		}
+
+		img{
+			position: absolute;
+			transition: all 1s;
+			transform-origin: left;
+		}
+		.box:hover img:nth-child(2){
+			transform: rotateY(-180deg);
+		}
+	</style>
+</head>
+<body>
+	<!-- <div><img src="img/movie_3_9.jpg" alt=""></div> -->
+	<div class="box"><img src="img/movie_3_9.jpg" alt=""> <img src="img/movie_3_12.jpg" alt=""></div>
+</body>
+</html>

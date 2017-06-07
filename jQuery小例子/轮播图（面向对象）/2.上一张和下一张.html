@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul,li,h1{margin:0;padding:0;}
+		ol,ul{list-style: none;}
+		a{text-decoration: none;}
+
+		h1{text-align: center;}
+		img{vertical-align: middle;}
+		
+		.slider,.slider-content,img{ width: 800px;height: 500px; }
+		.slider{position:relative;margin:50px auto;overflow: hidden;}
+		.slider .btn{position: absolute;width: 50px;height: 50px;background: rgba(255,255,255,0);
+			border-radius: 25px;top:50%;transform: translateY(-50%);
+		}
+		.slider .btn:after,.slider .btn:before{
+			content: "";
+			position: absolute;
+			width: 25px;
+			height: 3px;
+			background: #fff;
+			top:50%;transform: translateY(-50%);
+			transition:transform .3s,background .3s;
+
+		}
+		.slider .btn-left:after,.slider .btn-left:before{ transform-origin: 1px 50%;}
+
+		.slider .btn:hover{background: rgba(255,255,255,1);}
+		.slider .btn-left{left:20px;}
+		.slider .btn-left:before{left:10px;transform: rotate(60deg);}
+		.slider .btn-left:after{left:10px;transform: rotate(-60deg);}
+		.slider .btn-left:hover:before{background:red;transform: rotate(45deg);}
+		.slider .btn-left:hover:after{background:red;transform: rotate(-45deg);}
+
+		.slider .btn-right{right:20px;}
+		.slider .btn-right:after,.slider .btn-right:before{ transform-origin: 24px 50%;}
+		.slider .btn-right:before{right:10px;transform: rotate(60deg);}
+		.slider .btn-right:after{right:10px;transform: rotate(-60deg);}
+		.slider .btn-right:hover:before{background:red;transform: rotate(45deg);}
+		.slider .btn-right:hover:after{background:red;transform: rotate(-45deg);}
+
+		.textArea{position: absolute;bottom:0;width: 100%;line-height: 50px;background-color: rgba(0,0,0,.5);color:#fff;text-indent: 2em;}
+		.indirector {position: absolute;bottom:0;left:50%;transform: translateX(-50%);}
+		.indirector li{transition:transform .3s;float: left;width: 14px;height: 14px;border-radius: 7px;background: #fff;margin:0 5px;}
+		.indirector li.current{background-color:red;transform: scale(1.5);}
+
+
+
+
+	</style>
+</head>
+<body>
+	<h1>轮播图</h1>
+	<hr>
+
+	<div class="slider">
+		<ul class="slider-content">
+			<li><a href=""><img src="img/html.jpg"   alt="1.html是基础"></a></li>
+			<li><a href=""><img src="img/css.jpg"    alt="2.css是长的像什么"></a></li>
+			<li><a href=""><img src="img/js.jpg"     alt="3.js是动作"></a></li>
+			<li><a href=""><img src="img/jquery.jpg" alt="4.你最好不用jquery"></a></li>
+		</ul>
+
+		<a href="javascript:void(0);" class="btn btn-left"  ></a>
+		<a href="javascript:void(0);" class="btn btn-right" ></a>
+
+<!-- 		<div class="textArea">
+			1.html是基础
+		</div> -->
+
+		<ol class="indirector">
+			<li class="current"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+		
+	</div>
+
+	<hr>
+
+	<div class="slider">
+		<ul class="slider-content">
+			<li><a href=""><img src="img/html.jpg" alt="1.html是基础"></a></li>
+			<li><a href=""><img src="img/css.jpg" alt="2.css是长的像什么"></a></li>
+			<li><a href=""><img src="img/js.jpg" alt="3.js是动作"></a></li>
+			<li><a href=""><img src="img/jquery.jpg" alt="4.你最好不用jquery"></a></li>
+		</ul>
+		<a href="javascript:void(0);" class="btn btn-left"  ></a>
+		<a href="javascript:void(0);" class="btn btn-right" ></a>
+
+		<div class="textArea">
+			1.html是基础
+		</div>
+
+		<ol class="indirector">
+			<li class="current">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ol>
+	</div>
+
+	<script>
+		function Slider(obj){
+			//obj是一个dom对象，它就表示包含整个轮播图dom的那个容器。
+			//类似于上面的slider
+			this.currentIndex =  0;   //当前是第几张,下标从0开始
+			this.speed        =  2000;//默认是2000ms切换一张                                      
+			this.lis 		  =  obj.querySelectorAll(".slider-content li");
+			this.len          =  this.lis.length;
+			this.btnLeft      =  obj.querySelector(".btn-left");			//左边的按钮
+			this.btnRight     =  obj.querySelector(".btn-right");           //右边的按钮
+			this.indirector   =  obj.querySelector(".indirector");          //角标
+			this.indirectorLis=  this.indirector.querySelectorAll("li");    //角标中的li
+			
+
+			//this.textArea     =  obj.querySelector(".textArea");            //文字区域
+			this.textArea     =  document.createElement("div")                //文字区域
+			this.textArea.className="textArea";
+			obj.appendChild(this.textArea);
+
+
+
+			//给按钮加点击事件
+			var that = this;
+			this.btnLeft.addEventListener("click",function(){
+				that.prev();
+			})
+			this.btnRight.addEventListener("click",function(){
+				that.next();
+			})
+		}
+		Slider.prototype.next = function(){
+
+			//如果
+			// if(this.currentIndex == this.len -1){
+			// 	this.goto( 0 );
+			// }
+			// else{
+			// 	this.goto( this.currentIndex +1 );
+			// }
+
+			this.goto( ( this.currentIndex + 1 )  % this.len);
+
+		}
+
+		Slider.prototype.prev = function(){
+
+			//如果
+			// if(this.currentIndex == 0){
+			// 	this.goto( this.len - 1 );
+			// }
+			// else{
+			// 	this.goto( this.currentIndex -1 );
+			// }
+
+			this.goto( ( this.currentIndex - 1 + this.len)  % this.len);
+			// 1  % 4 ========= (1+4) %4
+			// -1 % 4       -> -1;
+			// (-1 + 4) % 4 --> 3
+
+		}
+
+		Slider.prototype.goto = function(yourIndex){
+			for(var i = 0;i<this.len;i++){
+				//全部隐藏
+				this.lis[i].style.display = "none";
+			}
+
+			this.lis[yourIndex].style.display = "block";
+
+			//获取第yourIndex张上的alt属性，把它填入 .textArea中
+			// var t = this.lis[yourIndex].querySelector("img").getAttribute("alt");
+			var t = this.lis[yourIndex].querySelector("img")["alt"];
+			this.textArea.innerHTML = t;
+
+
+			for(var i = 0;i<this.len;i++){ //把所有的角标上的current去掉
+				//全部隐藏
+				this.indirectorLis[i].className = ""
+			}
+			this.indirectorLis[yourIndex].className = "current"; //给当的那个li那上 current
+
+
+			this.currentIndex = yourIndex;  //更新当前页的索引
+
+
+			console.info("跳到这一张：yourIndex"+yourIndex)
+		}
+
+		var objs = document.querySelectorAll(".slider");
+		var obj = objs[0];
+		var s1 = new Slider(obj);  //只要把第一个.slider变成轮播图
+		console.info(s1);
+	</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+body {
+  background: #f3f5f6;
+}
+.header {
+  height: 192px;
+  background: #fff;
+  width: 100%;
+}
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.container ul.min_nav {
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.container ul.min_nav .min_nav2 {
+  display: inline-block;
+}
+.container ul.min_nav .min_nav2 a {
+  color: #ff7800;
+}
+.container ul.min_nav li {
+  margin-right: 5px;
+}
+.container ul.min_nav a {
+  font-size: 12px;
+}
+.container .container_left {
+  width: 916px;
+  float: left;
+  overflow: hidden;
+}
+.container .container_left .province {
+  background: #fff;
+}
+.container .container_left .province .place_title {
+  overflow: hidden;
+  padding: 10px 20px;
+}
+.container .container_left .province .place_title h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: bold;
+  color: #2b9bd6;
+  margin-right: 15px;
+}
+.container .container_left .province .place_title ul.dress {
+  height: 24px;
+  border: 1px solid #dee1e5;
+  border-radius: 2px;
+  text-align: center;
+  line-height: 24px;
+}
+.container .container_left .province .place_title ul.dress .active {
+  background: #f1f1f1;
+}
+.container .container_left .province .place_title ul.dress li {
+  width: 54px;
+  height: 24px;
+  float: left;
+}
+.container .container_left .province .place_title ul.data li {
+  float: left;
+  margin-left: 10px;
+}
+.container .container_left .province .place_title ul.data .data_bd {
+  border-bottom: 2px solid #ff7800;
+  padding-bottom: 2px;
+}
+.container .container_left .province .place_list ul li a.module {
+  width: 874px;
+  height: 160px;
+  border-top: 1px solid #dee1e5;
+  padding: 20px;
+  display: block;
+}
+.container .container_left .province .place_list ul li a.module .module_right {
+  width: 470px;
+  padding: 0 20px;
+  float: left;
+}
+.container .container_left .province .place_list ul li a.module .module_right h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+.container .container_left .province .place_list ul li a.module .module_right p {
+  white-space: normal;
+  margin-bottom: 15px;
+  color: #666;
+}
+.container .container_left .province .place_list ul li a.module .module_right span {
+  color: #999999;
+}
+.container .container_right {
+  float: right;
+  width: 260px;
+  background: #fff;
+}
+.container .container_right img {
+  display: block;
+  text-align: center;
+  margin: 20px auto 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f5f6;
+}
+.container .container_right h3 {
+  font-size: 16px;
+  color: #333333;
+  padding: 10px 20px 0;
+  line-height: 40px;
+}
+.container .container_right .hot_go {
+  padding-left: 20px;
+}
+.container .container_right .hot_go li {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.container .container_right .hot_go li a img {
+  width: 96px;
+  height: 72px;
+  float: left;
+  margin: 0px 10px 0px 0px;
+}
+.container .container_right .hot_go li a .hot_go_right {
+  width: 120px;
+  float: left;
+}
+.container .container_right .hot_go li a .hot_go_right p {
+  font-size: 14px;
+  white-space: normal;
+  margin-bottom: 10px;
+}
+.container .container_right .hot_go li a .hot_go_right i {
+  display: inline-block;
+  width: 20px;
+  height: 13px;
+  background: url(../images/icon.png) no-repeat -148px -124px;
+}
+.container .container_right .hot_go li a .hot_go_right span {
+  color: #9999B2;
+}

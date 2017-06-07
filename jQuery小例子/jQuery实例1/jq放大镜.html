@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery放大镜效果Demo-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+.imgbox {
+	position:relative;
+	margin-left:100px;
+}
+.probox {
+	width:300px;
+	height:300px;
+	border:1px solid #000;
+}
+.probox img {
+	width:300px;
+	height:300px;
+	vertical-align:top;
+}
+.showbox {
+	display:none;
+	position:absolute;
+	left:403px;
+	top:0;
+	width:400px;
+	height:300px;
+	overflow:hidden;
+	border:1px solid #ccc;
+}
+.showbox img {
+	position:absolute;
+	height:1200px;
+	width:1200px;
+}
+.hoverbox {
+	display:none;
+	position:absolute;
+	top:0;
+	background:#09f;
+	border:1px solid #09f;
+	height:75px;
+	width:100px;
+	cursor:move;
+	z-index:10;
+}
+</style>
+</head>
+<body>
+<div class="imgbox">
+    <div class="probox">
+        <img src="http://www.jq22.com/demo/jpgZoo20160421/images/img01.jpg" alt="" />
+        <div class="hoverbox"></div>
+    </div>
+    <div class="showbox">
+        <img src="http://www.jq22.com/demo/jpgZoo20160421/images/img01.jpg" alt="" />
+    </div>
+</div><script>
+function Zoom(imgbox, hoverbox, l, t, x, y, h_w, h_h, showbox) {
+    var moveX = x - l - (h_w / 2);
+    //鼠标区域距离
+    var moveY = y - t - (h_h / 2);
+    //鼠标区域距离
+    if (moveX < 0) {
+        moveX = 0
+    }
+    if (moveY < 0) {
+        moveY = 0
+    }
+    if (moveX > imgbox.width() - h_w) {
+        moveX = imgbox.width() - h_w
+    }
+    if (moveY > imgbox.height() - h_h) {
+        moveY = imgbox.height() - h_h
+    }
+    //判断鼠标使其不跑出图片框
+    var zoomX = showbox.width() / imgbox.width()
+    //求图片比例
+    var zoomY = showbox.height() / imgbox.height()
+
+    showbox.css({
+        left: -(moveX * zoomX),
+        top: -(moveY * zoomY)
+    })
+    hoverbox.css({
+        left: moveX,
+        top: moveY
+    })
+    //确定位置
+
+}
+
+function Zoomhover(imgbox, hoverbox, showbox) {
+    var l = imgbox.offset().left;
+    var t = imgbox.offset().top;
+    var w = hoverbox.width();
+    var h = hoverbox.height();
+    var time;
+    $(".probox img,.hoverbox").mouseover(function(e) {
+        var x = e.pageX;
+        var y = e.pageY;
+        $(".hoverbox,.showbox").show();
+        hoverbox.css("opacity", "0.3")
+        time = setTimeout(function() {
+            Zoom(imgbox, hoverbox, l, t, x, y, w, h, showbox)
+        }, 1)
+    }).mousemove(function(e) {
+        var x = e.pageX;
+        var y = e.pageY;
+        time = setTimeout(function() {
+            Zoom(imgbox, hoverbox, l, t, x, y, w, h, showbox)
+        }, 1)
+    }).mouseout(function() {
+        showbox.parent().hide()
+        hoverbox.hide();
+    })
+}
+$(function() {
+    Zoomhover($(".probox img"), $(".hoverbox"), $(".showbox img"));
+})</script>
+</body>
+</html>

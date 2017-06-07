@@ -1,0 +1,80 @@
+body {
+  background: #fff;
+}
+.package_mod {
+  display: inline-block;
+  width: 290px;
+  height: 308px;
+  background: skyblue;
+}
+.package_mod:hover {
+  box-shadow: 0 2px 15px -4px #000000;
+}
+.package_mod img {
+  width: 100%;
+  border-radius: 2px;
+}
+.package_mod .referral {
+  margin: 0px 10px;
+}
+.package_mod .referral .title h4 {
+  font-size: 16px;
+  color: #333;
+  padding: 8px 0 3px;
+}
+.package_mod .referral .title p {
+  color: #666;
+  font-size: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #DDDDDD;
+  margin-bottom: 8px;
+}
+.package_mod .referral .title p span {
+  color: #64B052;
+}
+.package_mod .referral .des p {
+  height: 3em;
+  overflow: hidden;
+  color: #999;
+  font-size: 12px;
+  white-space: normal;
+}
+.package_mod .referral .des span {
+  padding-top: 4px;
+  font-size: 12px;
+  color: #999;
+}
+.package_mod .referral .des span strong {
+  font-size: 20px;
+  color: #ff4500;
+  margin-right: 7px;
+  font-weight: bold;
+}
+.package_mod .referral .des span strong b {
+  font-size: 14px;
+  font-weight: normal;
+}
+.package_mod .referral .des span .price {
+  line-height: 30px;
+  padding-left: 5px;
+  text-decoration: line-through;
+}
+.package_mod .referral .des span i {
+  float: right;
+  line-height: 16px;
+  border: 1px solid #ff7800;
+  padding-right: 5px;
+  font-size: 12px;
+  color: #ff7800;
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+.package_mod .referral .des span i em {
+  float: left;
+  margin-right: 5px;
+  width: 20px;
+  height: 16px;
+  display: inline-block;
+  background: url(../images/icon.png) no-repeat -208px 0;
+}
